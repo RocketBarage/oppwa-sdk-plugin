@@ -14,4 +14,10 @@ class Oppwasdkplugin {
     final String res = await _channel.invokeMethod('payment');
     return res;
   }
+
+  static Future<String> validateCard(String number) async {
+    var params = <String, dynamic>{"number": number};
+    final String res = await _channel.invokeMethod('validate', params);
+    return res;
+  }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/oppwa.mobile-2.49.0/oppwa.mobile-2.49.0.iml" filepath="$PROJECT_DIR$/oppwa.mobile-2.49.0/oppwa.mobile-2.49.0.iml" group="oppwasdkplugin/oppwa.mobile-2.49.0" />
+      <module fileurl="file://$PROJECT_DIR$/oppwasdkplugin.iml" filepath="$PROJECT_DIR$/oppwasdkplugin.iml" group="oppwasdkplugin" />
+    </modules>
+  </component>
+</project>

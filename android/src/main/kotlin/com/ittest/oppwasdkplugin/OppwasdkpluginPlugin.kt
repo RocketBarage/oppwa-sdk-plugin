@@ -1,6 +1,7 @@
 package com.ittest.oppwasdkplugin
 
 import androidx.annotation.NonNull;
+import com.oppwa.mobile.connect.payment.card.CardPaymentParams
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -10,6 +11,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** OppwasdkpluginPlugin */
 public class OppwasdkpluginPlugin: FlutterPlugin, MethodCallHandler {
+
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "oppwasdkplugin")
     channel.setMethodCallHandler(OppwasdkpluginPlugin());
@@ -37,9 +39,21 @@ public class OppwasdkpluginPlugin: FlutterPlugin, MethodCallHandler {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else if(call.method == "payment") {
       result.success("payment call");
+    } else if (call.method == "validate") {
+      val params: Map<String, Object> = call.arguments as Map<String, Object>
+      result.success(if(validate(params["number"].toString())) "true" else "false" );
     } else {
       result.notImplemented()
     }
+  }
+
+  private fun paymentParams(checkoutId: String, brand: String, number: String, holder: String, expiryMonth: String, expiryYear: String, cvv: String) {
+    val paymentParams = CardPaymentParams(checkoutId, brand, number, holder, expiryMonth, expiryYear, cvv);
+    paymentParams.shopperResultUrl = "streamity://result"
+  }
+
+  private fun validate (number: String): Boolean {
+    return CardPaymentParams.isNumberValid(number)
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
