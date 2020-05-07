@@ -1,6 +1,6 @@
 configurations.maybeCreate("default")
 
-dependencies {
-    implementation project(path: ':')
-}
+//dependencies {
+//    implementation project(path: ':')
+//}
 artifacts.add("default", file('oppwa.mobile-2.49.0.aar'))
